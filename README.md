@@ -1,5 +1,5 @@
 # crispr_analysis
-*in progress*
+*this document is in progress*
 
 Workflow used to analyze CRISPR knockout screen data
 
