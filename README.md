@@ -10,7 +10,7 @@ This set of scripts was initially developed to analyze CRISPR knockout screen da
 * Perform preliminary QC
 * Align reads to GeCKO or CRISPR reference files
 * Perform QC on aligned files
-* Perform differential expression of reads aligned to transcripts according to a given reference genome
+* Perform differential expression of reads aligned to transcripts according to a given reference file
 
 Several freely available software packages are used to perform most of these steps (see below). 
 
@@ -19,8 +19,8 @@ Several freely available software packages are used to perform most of these ste
 The Tuxedo suite of tools and various other programs should be installed: bowtie or bowtie2, tophat, cufflinks, cummerbund, fastqc, trimmomatic, samtools, bamtools, picardtools.
 Annotation files should be available: reference genome fasta, gtf, refFlat, and index files. We use ERCC spike-ins, so our reference files include ERCC mix transcripts.
 For adapter trimming, we include Ilumina sequences 
-The Python scripts make use of modules that include subprocess, os, argparse, sys.
-R and various libraries should be available, including 
+The Python scripts make use of modules that include subprocess, os.
+R and various libraries should be available, including stringr, plyr and dplyr.
 
 ### input files
 
@@ -34,9 +34,23 @@ Before running the pipeline, characteristics of a set of fastq files for samples
 	file_directory	| Top-level directory where sample's fastq files were written to following Casava filters
 	batch			| gigpad batch number associated with sample, needed to locate raw fastq file and used as directory name for pipeline output files
 	label			| Biological condition associated with the sample, provided by customer
-	ref_genome		| Rerence genome associated with sample. (options: "hg19", "Zv9", "mm10")
+	ref_genome		| Rerence genome associated with sample. (options: "gecko", "gpcr_CRISPR")
 	library_type	| Type of library for sample (options: "PE", "SE", "DGE", "SPE",
 							corresponding to: "paired-end", "single-end", "digital gene expression", "stranded paired-end")
 
 
 ### Workflow
+
+1) Write and execute an lsf job to perform QC and read alignment for RNA-seq samples associated with a project using gecko_analysis.py:
+
+> python gecko_analysis.py <i>sample_info_file.txt</i>
+
+Following execution of this script, various output files will be written for each sample in directories structured as:
+> 
+ <i>batch_num</i>/<i>sample_name</i>/tophat_out <br>
+ <i>batch_num</i>/<i>sample_name</i>/cufflinks_out <br>
+ <i>batch_num</i>/<i>sample_name</i>/cufflinks_out_ERCC <br>
+ <i>batch_num</i>/<i>sample_name</i>/<i>sample_name</i>_R1_Trimmed.fastqc <br>
+ <i>batch_num</i>/<i>sample_name</i>/<i>sample_name</i>_R1_fastqc <br>
+ <i>batch_num</i>/<i>sample_name</i>/<i>sample_name</i>_ReadCount <br>
+ ...
