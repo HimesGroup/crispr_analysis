@@ -17,7 +17,7 @@ Several freely available software packages are used to perform most of these ste
 ### Dependencies
 
 The Tuxedo suite of tools and various other programs should be installed: bowtie or bowtie2, tophat, cufflinks, cummerbund, fastqc, trimmomatic, samtools, bamtools, picardtools.
-Annotation files should be available: reference genome fasta, gtf, refFlat, and index files. We use ERCC spike-ins, so our reference files include ERCC mix transcripts.
+Annotation files should be available: reference genome fasta, gtf, refFlat, and index files. 
 For adapter trimming, we include Ilumina sequences 
 The Python scripts make use of modules that include subprocess, os.
 R and various libraries should be available, including stringr, plyr and dplyr.
@@ -54,3 +54,5 @@ Following execution of this script, various output files will be written for eac
  <i>batch_num</i>/<i>sample_name</i>/<i>sample_name</i>_R1_fastqc <br>
  <i>batch_num</i>/<i>sample_name</i>/<i>sample_name</i>_ReadCount <br>
  ...
+
+2) Match sgRNAs to genes and compute expression by sgRNA and by gene using sgRNAs_to_genes.R
