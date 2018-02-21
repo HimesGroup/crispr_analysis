@@ -22,7 +22,7 @@ For adapter trimming, we include Ilumina sequences
 The Python scripts make use of modules that include subprocess, os.
 R and various libraries should be available, including stringr, plyr and dplyr.
 
-### input files
+### Input Files
 
 Before running the pipeline, characteristics of a set of fastq files for samples that are part of a project are described in a tab-delimited txt file containing the following fields:
 
