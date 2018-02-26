@@ -28,7 +28,7 @@ Before running the pipeline, characteristics of a set of fastq files for samples
 ```
 sample_ID		| ID given to sample 
 index			| Six digit sequence of the index for this library
-file_directory	| Directory where sample's fastq files reside
+file_directory 	 | Directory where sample's fastq files reside
 project			| Name for project associated with sample
 label			| Biological condition associated with the sample, provided by customer
 ref_genome		| Rerence genome associated with sample. (options: "gecko", "gpcr_CRISPR")
