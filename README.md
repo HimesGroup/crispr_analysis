@@ -1,5 +1,4 @@
 # crispr_analysis
-*this document is in progress*
 
 Workflow used to analyze CRISPR knockout screen data
 
@@ -55,4 +54,6 @@ Following execution of this script, various output files will be written for eac
  <i>batch_num</i>/<i>sample_name</i>/<i>sample_name</i>_ReadCount <br>
  ...
 
-2) Match sgRNAs to genes and compute expression by sgRNA and by gene using sgRNAs_to_genes.R
+2) Normalize raw gRNA counts to the total number of mapped reads for each sample and obtain per-gene results using sgRNAs_to_genes.R
+
+3) Rank gene-level results by the fold change of the mean for both sorted population samples to the control sample
