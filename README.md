@@ -45,14 +45,14 @@ Before running the pipeline, characteristics of a set of fastq files for samples
 > python gecko_analysis.py <i>sample_info_file.txt</i>
 
 Following execution of this script, various output files will be written for each sample in directories structured as:
-> 
- <i>batch_num</i>/<i>sample_name</i>/tophat_out <br>
- <i>batch_num</i>/<i>sample_name</i>/cufflinks_out <br>
- <i>batch_num</i>/<i>sample_name</i>/cufflinks_out_ERCC <br>
- <i>batch_num</i>/<i>sample_name</i>/<i>sample_name</i>_R1_Trimmed.fastqc <br>
- <i>batch_num</i>/<i>sample_name</i>/<i>sample_name</i>_R1_fastqc <br>
- <i>batch_num</i>/<i>sample_name</i>/<i>sample_name</i>_ReadCount <br>
- ...
+	> 
+	 <i>batch_num</i>/<i>sample_name</i>/tophat_out <br>
+	 <i>batch_num</i>/<i>sample_name</i>/cufflinks_out <br>
+	 <i>batch_num</i>/<i>sample_name</i>/cufflinks_out_ERCC <br>
+	 <i>batch_num</i>/<i>sample_name</i>/<i>sample_name</i>_R1_Trimmed.fastqc <br>
+	 <i>batch_num</i>/<i>sample_name</i>/<i>sample_name</i>_R1_fastqc <br>
+	 <i>batch_num</i>/<i>sample_name</i>/<i>sample_name</i>_ReadCount <br>
+	 ...
 
 2) Normalize raw gRNA counts to the total number of mapped reads for each sample and obtain per-gene results using sgRNAs_to_genes.R
 
