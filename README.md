@@ -25,6 +25,14 @@ R and various libraries should be available, including stringr, plyr and dplyr.
 
 Before running the pipeline, characteristics of a set of fastq files for samples that are part of a project are described in a tab-delimited txt file containing the following fields:
 
+```
+sample_ID		| ID given to sample 
+index			| Six digit sequence of the index for this library
+file_directory	| Directory where sample's fastq files reside
+project			| Name for project associated with sample
+label			| Biological condition associated with the sample, provided by customer
+ref_genome		| Rerence genome associated with sample. (options: "gecko", "gpcr_CRISPR")
+ ```
 
 ### Workflow
 
