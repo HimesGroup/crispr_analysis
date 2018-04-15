@@ -50,6 +50,6 @@ ref_genome		| Rerence genome associated with sample. (options: "gecko", "gpcr_CR
 
     Our study design used two cases and one control sample. 
     
-    The scripts in sgRNAs_to_genes.R compute fold changes for case vs. control for case1, case2 and the mean of case1 and case 2. They also tally the number of sgRNAs with fold change > 2 for each gene and provide a few different methods of ranking results. 
+    The scripts in sgRNAs_to_genes.R compute fold changes for case vs. control for case1, case2 and the mean of case1 and case 2. They also tally the number of sgRNAs with fold change > 2 for each gene and provide a few different methods of ranking per-gene results. For instance, per-gene results may be ranked by the number of sgRNAs with fold change > 2 corresponding to each gene, or by first ranking individual sgRNAs by fold change and subsequently matching these to gene names.
     
     If desired, these scripts can be modified to accomodate a different study design.
