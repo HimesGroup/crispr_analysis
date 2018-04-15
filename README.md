@@ -40,8 +40,9 @@ ref_genome		| Rerence genome associated with sample. (options: "gecko", "gpcr_CR
 
     > python gecko_analysis.py <i>sample_info_file.txt</i>
 
- Following execution of this script, various output files will be written for each sample in directories structured as:
-    > <i>batch_num</i>/<i>sample_name</i>/sample_out <br>
+     Following execution of this script, various output files will be written for each sample in directories structured as:
+    > 
+    <i>batch_num</i>/<i>sample_name</i>/sample_out <br>
 
 2) Normalize raw gRNA counts to the total number of mapped reads for each sample 
 
