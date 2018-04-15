@@ -12,7 +12,7 @@ def get_sample_info(fin):
 	v2: file_directory	| Directory where sample's fastq files reside
 	v3: project			| Name for project associated with sample
 	v4: label			| Biological condition associated with the sample, provided by customer
-	v5: ref_genome		| Rerence genome associated with sample. (options: "hg19", "hg38")
+	v5: ref_genome		| Rerence genome associated with sample. (options: "hg19", "hg38", "gecko", "gpcr_CRISPR")
 	"""
 	f = open(fin,'r')
 	c = f.read().split('\n')[1:]
