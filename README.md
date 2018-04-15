@@ -38,14 +38,11 @@ ref_genome		| Rerence genome associated with sample. (options: "gecko", "gpcr_CR
 
 1) Write and execute an lsf job to perform QC and read alignment for RNA-seq samples associated with a project using gecko_analysis.py:
 
-> python gecko_analysis.py <i>sample_info_file.txt</i>
+    > python gecko_analysis.py <i>sample_info_file.txt</i>
 
  Following execution of this script, various output files will be written for each sample in directories structured as:
-> 
- <i>batch_num</i>/<i>sample_name</i>/sample_out <br>
+    > <i>batch_num</i>/<i>sample_name</i>/sample_out <br>
 
 2) Normalize raw gRNA counts to the total number of mapped reads for each sample 
 
-3) Obtain per-sgRNA and per-gene results using the scripts in sgRNAs_to_genes.R. Our study design used two cases and one control sample. The scripts in sgRNAs_to_genes.R compute fold changes for case vs. control for case1, case2 and the mean of case1 and case 2. They also tally the number of sgRNAs with fold change > 2 for each gene and provide a few different methods of ranking results.
-
- If desired, these scripts can be modified to accomodate a different study design.
+3) Obtain per-sgRNA and per-gene results using the scripts in sgRNAs_to_genes.R. Our study design used two cases and one control sample. The scripts in sgRNAs_to_genes.R compute fold changes for case vs. control for case1, case2 and the mean of case1 and case 2. They also tally the number of sgRNAs with fold change > 2 for each gene and provide a few different methods of ranking results. If desired, these scripts can be modified to accomodate a different study design.
