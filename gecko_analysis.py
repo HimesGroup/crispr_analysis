@@ -35,9 +35,11 @@ def  make_gecko_fa(fin):
 	c = f.read().split('\n')[1:]
 	if '' in c:
 		c.remove('')
-	#Create output file
-	#outp = open("human_geckov2_sgRNA.fa", 'w')
-	outp = open("/project/bhimeslab/Reference/gpcr_CRISPR/gpcr_CRISPR_sgRNA.fa", 'w')
+	#Create output file, depending on ref_genome listed in info sheet
+	if ref_genome == 'hg19' or genome == 'gecko':
+		outp = open("human_geckov2_sgRNA.fa", 'w')
+	if ref_genome == 'gpcr_CRISPR':
+		outp = open("/project/bhimeslab/Reference/gpcr_CRISPR/gpcr_CRISPR_sgRNA.fa", 'w')
 	for x in c:
 		gene = x.split(',')[0]
 		id = x.split(',')[1]
@@ -45,8 +47,10 @@ def  make_gecko_fa(fin):
 		outp.write(">"+gene+"_"+id+"\n"+seq+"\n")
 	outp.close()
 
-#make_gecko_fa("/project/bhimeslab/Reference/GeCKO/human_geckov2_library.csv")
-#make_gecko_fa("/project/bhimeslab/gpcr_screen/gpcr_crispr_library.csv")
+if ref_genome == 'hg19' or genome == 'gecko':
+	make_gecko_fa("/project/bhimeslab/Reference/GeCKO/human_geckov2_library.csv")
+if ref_genome == 'gpcr_CRISPR':
+	make_gecko_fa("/project/bhimeslab/gpcr_screen/gpcr_crispr_library.csv")
 
 
 def get_genome_ref_files(genome):
@@ -93,8 +97,11 @@ def gecko_demultiplex(fastq_in, project, sample_info_file, path_start, bcfile):
 			subprocess.call("rm "+new_base_name+"."+curr_sample+".fastq", shell=True)
 
 		
-#gecko_demultiplex("/project/bhimeslab/gecko/gpcr_NoIndex.R1.fastq", "gpcr", "/project/bhimeslab/gecko/gpcr_Info_Sheet.txt", "/project/bhimeslab/", "/project/bhimeslab/gecko/gpcr_bcfile.txt")
-#gecko_demultiplex("/project/bhimeslab/gecko/mir_NoIndex.R1.fastq", "mir", "/project/bhimeslab/gecko/mir_Info_Sheet.txt", "/project/bhimeslab/", "/project/bhimeslab/gecko/mir_bcfile.txt")
+
+if ref_genome == 'hg19' or genome == 'gecko':
+	gecko_demultiplex("/project/bhimeslab/gecko/gpcr_NoIndex.R1.fastq", "gpcr", "/project/bhimeslab/gecko/gpcr_Info_Sheet.txt", "/project/bhimeslab/", "/project/bhimeslab/gecko/gpcr_bcfile.txt")
+if ref_genome == 'gpcr_CRISPR':
+	gecko_demultiplex("/project/bhimeslab/gecko/mir_NoIndex.R1.fastq", "mir", "/project/bhimeslab/gecko/mir_Info_Sheet.txt", "/project/bhimeslab/", "/project/bhimeslab/gecko/mir_bcfile.txt")
 
 
 def read_demultiplex_log(fin, project, sample_info_file):
@@ -129,8 +136,8 @@ def read_demultiplex_log(fin, project, sample_info_file):
 	outp.close()
 	
 
-#read_demultiplex_log("gecko_demultiplex_gpcr_030916.log", "gpcr", "gpcr_Info_Sheet.txt")
-#read_demultiplex_log("gecko_demultiplex_mir_030916.log", "mir", "mir_Info_Sheet.txt")
+read_demultiplex_log("gecko_demultiplex_gpcr_030916.log", "gpcr", "gpcr_Info_Sheet.txt")
+read_demultiplex_log("gecko_demultiplex_mir_030916.log", "mir", "mir_Info_Sheet.txt")
 
 
 
@@ -145,7 +152,7 @@ def gecko_main(fastq_in, project, sample_info_file, path_start):
 	if not os.path.exists(project_dir):
 		os.makedirs(project_dir)
 
-	sgRNA_index = "/project/bhimeslab/Reference/gpcr_CRISPR/gpcr_CRISPR"
+	sgRNA_index = get_genome_ref_files(ref_genome)
 	
 	#Make lsf file		
 	#Make bcfile
