@@ -36,7 +36,7 @@ def  make_gecko_fa(fin):
 	if '' in c:
 		c.remove('')
 	#Create output file, depending on ref_genome listed in info sheet
-	if ref_genome == 'hg19' or genome == 'gecko':
+	if ref_genome == 'gecko':
 		outp = open("human_geckov2_sgRNA.fa", 'w')
 	if ref_genome == 'gpcr_CRISPR':
 		outp = open("/project/bhimeslab/Reference/gpcr_CRISPR/gpcr_CRISPR_sgRNA.fa", 'w')
@@ -47,7 +47,7 @@ def  make_gecko_fa(fin):
 		outp.write(">"+gene+"_"+id+"\n"+seq+"\n")
 	outp.close()
 
-if ref_genome == 'hg19' or genome == 'gecko':
+if ref_genome == 'gecko':
 	make_gecko_fa("/project/bhimeslab/Reference/GeCKO/human_geckov2_library.csv")
 if ref_genome == 'gpcr_CRISPR':
 	make_gecko_fa("/project/bhimeslab/gpcr_screen/gpcr_crispr_library.csv")
@@ -57,7 +57,7 @@ def get_genome_ref_files(genome):
 	"""
 	Location of all sgRNA reference files needed for a given gecko library.
 	"""
-	if genome == "hg19" or genome == "gecko":
+	if genome == "gecko":
 		sgRNA_index = "/project/bhimeslab/Reference/GeCKO/geckov2"
 	if genome == "gpcr_CRISPR":
 		sgRNA_index = "/project/bhimeslab/Reference/gpcr_CRISPR/gpcr_CRISPR_sgRNA.fa"
@@ -98,7 +98,7 @@ def gecko_demultiplex(fastq_in, project, sample_info_file, path_start, bcfile):
 
 		
 
-if ref_genome == 'hg19' or genome == 'gecko':
+if ref_genome == 'gecko':
 	gecko_demultiplex("/project/bhimeslab/gecko/gpcr_NoIndex.R1.fastq", "gpcr", "/project/bhimeslab/gecko/gpcr_Info_Sheet.txt", "/project/bhimeslab/", "/project/bhimeslab/gecko/gpcr_bcfile.txt")
 if ref_genome == 'gpcr_CRISPR':
 	gecko_demultiplex("/project/bhimeslab/gecko/mir_NoIndex.R1.fastq", "mir", "/project/bhimeslab/gecko/mir_Info_Sheet.txt", "/project/bhimeslab/", "/project/bhimeslab/gecko/mir_bcfile.txt")
@@ -134,12 +134,8 @@ def read_demultiplex_log(fin, project, sample_info_file):
 	for l in count_lines:
 		outp.write("\t".join(l)+"\n")
 	outp.close()
-	
 
 read_demultiplex_log("gecko_demultiplex_gpcr_030916.log", "gpcr", "gpcr_Info_Sheet.txt")
-read_demultiplex_log("gecko_demultiplex_mir_030916.log", "mir", "mir_Info_Sheet.txt")
-
-
 
 def gecko_main(fastq_in, project, sample_info_file, path_start):
 
@@ -196,11 +192,4 @@ def gecko_main(fastq_in, project, sample_info_file, path_start):
 		i += 1
 	outp.close()	
 
-
-gecko_main("mir_NoIndex.R1.fastq", "mir", "mir_Info_Sheet.txt", "/project/bhimeslab/gecko/")
 gecko_main("gpcr_NoIndex.R1.fastq", "gpcr", "gpcr_Info_Sheet.txt", "/project/bhimeslab/gecko/")
-
-
-
-
-
