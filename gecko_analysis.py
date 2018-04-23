@@ -48,9 +48,11 @@ def  make_gecko_fa(fin):
 	outp.close()
 
 if ref_genome == 'gecko':
-	make_gecko_fa("/project/bhimeslab/Reference/GeCKO/human_geckov2_library.csv")
+	if not os.path.isfile("/project/bhimeslab/Reference/GeCKO/human_geckov2_library.csv"):
+		make_gecko_fa("/project/bhimeslab/Reference/GeCKO/human_geckov2_library.csv")
 if ref_genome == 'gpcr_CRISPR':
-	make_gecko_fa("/project/bhimeslab/gpcr_screen/gpcr_crispr_library.csv")
+	if not os.path.isfile("/project/bhimeslab/gpcr_screen/gpcr_crispr_library.csv"):		
+		make_gecko_fa("/project/bhimeslab/gpcr_screen/gpcr_crispr_library.csv")
 
 
 def get_genome_ref_files(genome):
