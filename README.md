@@ -15,7 +15,7 @@ Several freely available software packages are used to perform most of these ste
 
 ### Dependencies
 
-Programs that should be installed: bowtie2, cutadapt, samtools, bamtools, picardtools.
+Programs that should be installed: ea-utils, bowtie2, cutadapt, samtools, bamtools.
 Annotation files should be available: reference crispr libraries. 
 For trimming, sequences based on crispr library used
 The Python scripts make use of modules that include subprocess, os.
@@ -36,7 +36,7 @@ ref_genome		| Rerence genome associated with sample. (options: "gecko", "gpcr_CR
 
 ### Workflow
 
-1) Write and execute an lsf job to perform QC and read alignment for RNA-seq samples associated with a project using gecko_analysis.py:
+1) Write and execute an lsf job to perform read alignment for RNA-seq samples associated with a project using gecko_analysis.py:
 
     > python gecko_analysis.py <i>sample_info_file.txt</i>
 
@@ -44,6 +44,8 @@ ref_genome		| Rerence genome associated with sample. (options: "gecko", "gpcr_CR
     > 
     <i>batch_num</i>/<i>sample_name</i>/sample_out <br>
 
+    This script creates a reference file based on the genome selected. It then demultiplexes sequentially after trimming a single 5' base since some Gecko libraries have barcodes within reads (i.e. in our dataset, we found that barcodes were not always 5' anchored). More details about the demultiplexing methodology and rationale can be found within the python script. Finally, it writes an lsf file to perform read alignment.
+ 
 2) Normalize raw gRNA counts to the total number of mapped reads for each sample 
 
 3) Obtain per-sgRNA and per-gene results using the scripts in sgRNAs_to_genes.R. 
