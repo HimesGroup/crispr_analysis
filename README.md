@@ -44,14 +44,14 @@ ref_genome		| Rerence genome associated with sample. (options: "gecko", "gpcr_CR
     > 
     <i>batch_num</i>/<i>sample_name</i>/sample_out <br>
 
-    This script creates a reference file based on the genome selected. It then demultiplexes sequentially after trimming a single 5' base since some Gecko libraries have barcodes within reads (i.e. in our dataset, we found that barcodes were not always 5' anchored). More details about the demultiplexing methodology and rationale can be found within the python script. Finally, it writes an lsf file to perform read alignment.
+    This script creates a reference file based on the genome selected. Note that reference file names are hard coded in the python script and should be modified if applicable. The script then demultiplexes sequentially after trimming a single 5' base, since some Gecko libraries have barcodes within reads (i.e. in our dataset, we found that barcodes were not always 5' anchored). More details about the demultiplexing methodology and rationale can be found within the python script. Finally, it writes an lsf file to perform read alignment.
  
 2) Normalize raw gRNA counts to the total number of mapped reads for each sample 
 
 3) Obtain per-sgRNA and per-gene results using the scripts in sgRNAs_to_genes.R. 
 
-    Our study design used two cases and one control sample. If desired, these scripts can be modified to accomodate a different study design.
+    Our study design used two replicates and one control sample. If desired, these scripts can be modified to accomodate a different study design. 
     
-    The scripts in sgRNAs_to_genes.R compute fold changes for case vs. control for case1, case2 and the mean of case1 and case2. Ultimately, we used the results based on the mean of case1 and case2 for our study. 
+    Because only two replicates were used, differential expression analysis was done simply by computing fold changes. The scripts in sgRNAs_to_genes.R compute fold changes for case vs. control for replicate1, case2 and the mean of case1 and case2. Ultimately, we used the results based on the mean of case1 and case2 for our study. 
     
     The scripts in sgRNAs_to_genes.R tally the number of sgRNAs with fold change > 2 for each gene and provide a few different methods of ranking per-gene results. For instance, per-gene results may be ranked by the number of sgRNAs with fold change > 2 corresponding to each gene, or by first ranking individual sgRNAs by fold change and subsequently matching these to genes.
