@@ -33,6 +33,8 @@ project			| Name for project associated with sample
 label			| Biological condition associated with the sample, provided by customer
 ref_genome		| Rerence genome associated with sample. (options: "gecko", "gpcr_CRISPR")
  ```
+Note that there are two gRNA library options. The "gecko" option refers to the human GeCKO (Genome-Scale CRISPR Knock-Out) lentiviral pooled libraries, available from [Addgene](https://www.addgene.org/pooled-library/zhang-human-gecko-v2/). The GeCKO v2 libraries consist of over 100,000 unique gRNAs for gene knock-out and target early consecutive exons for genome editing. The "gpcr_CRISPR" option refers to a library designed by [Lu Lab](https://www.hsph.harvard.edu/quan-lu/) at the Harvard School of Public Health to target miRNA and GPCRs.
+
 
 ### Workflow
 
